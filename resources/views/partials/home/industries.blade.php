@@ -63,30 +63,22 @@
         ],
     ];
 
-    $industries = $projects->pluck('industry')->filter()->unique()->values();
 @endphp
 
-@if ($industries->isNotEmpty())
+@if (!empty($industryMeta))
 <div class="reveal content px-2 py-10 md:py-15 max-xxl:px-4">
 
     <div class="max-sm:px-2 text-center mx-auto max-w-144.25 mb-12">
         <p class="section-title">Industries We Serve</p>
 
         <p class="font-normal text-[18px] max-sm:text-[14px] pt-6 text-gray-400">
-            Real platforms delivered for real businesses across these sectors.
+            Software solutions tailored to the way each of these sectors actually works.
         </p>
     </div>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
-        @foreach ($industries as $industry)
-
-            @php
-                $meta = $industryMeta[$industry] ?? [
-                    'description' => 'Custom software solutions tailored to this sector.',
-                    'svgPath' => 'M4 21V8l8-5 8 5v13h-5v-7H9v7H4Z'
-                ];
-            @endphp
+        @foreach ($industryMeta as $industry => $meta)
 
             <div class="p-6 bg-white shadow-gray-300 shadow-lg rounded-lg text-center">
 

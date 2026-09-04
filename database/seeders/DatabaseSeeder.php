@@ -26,11 +26,16 @@ class DatabaseSeeder extends Seeder
         Company::updateOrCreate(['id' => 1], [
             'name' => 'CodeVerse',
             'industry' => 'Software Development & Digital Solutions',
-            'tagline' => 'We design and build scalable, secure, and high-performance web applications.',
-            'about' => "CodeVerse is a software development company specializing in Laravel, PHP, and MySQL, with a proven track record of building scalable, secure, and high-performance web applications. We design and develop RESTful APIs, integrate third-party services, optimize database performance, and implement secure authentication, authorization, and Role-Based Access Control (RBAC) for our clients. Our team follows MVC architecture, Object-Oriented Programming (OOP), and modern software design principles, with hands-on experience in real-time applications using Pusher and Livewire. We are passionate about writing clean, maintainable code, solving complex technical challenges, and delivering reliable, production-ready backend solutions.",
-            'mission' => 'To help businesses grow by building reliable, scalable, and secure software tailored to their needs.',
-            'vision' => 'To be a trusted technology partner known for engineering excellence and long-term client relationships.',
+            'tagline' => 'We build reliable software that powers real businesses.',
+            'about' => "CodeVerse is a software development company focused on building reliable, scalable, and secure software solutions that solve real business challenges. We specialize in custom web platforms, enterprise applications, ERP and business management systems, mobile applications, and RESTful APIs, delivering solutions tailored to the unique workflows and requirements of each client. Our technical expertise spans Laravel, PHP, MySQL, Livewire, modern web technologies, and API-driven architectures, with experience in developing complex systems that include multi-branch operations, bilingual Arabic/English support, role-based access control, secure authentication and authorization, payment gateways, third-party integrations, real-time features, notifications, document management, and advanced reporting workflows. We apply MVC architecture, Object-Oriented Programming (OOP), clean coding practices, and modern software design principles to ensure that every system we build remains maintainable, performant, and ready to scale. From initial requirements and system architecture to development, integration, optimization, and deployment, CodeVerse takes a business-focused approach to software development, combining technical expertise with a deep understanding of operational needs to deliver production-ready platforms that create lasting value for our clients.",
+            'mission' => 'To transform complex business requirements into reliable, secure, and scalable software solutions that improve operations and create measurable value.',
+            'vision' => 'To become a trusted technology partner for businesses worldwide, recognized for engineering excellence, innovative solutions, and long-term client partnerships.',
             'founded_year' => 2020,
+            'projects_delivered' => 120,
+            'client_rating' => 4.9,
+            'support_hours' => '24/7',
+            'navbar_logo_path' => 'company/logo_navbar.png',
+            'footer_logo_path' => 'company/logo_footer.png',
             'email' => 'info@codeversetechno.com',
             'phone' => '+20 150 561 1560',
             'location' => 'Zagazig, Egypt',
@@ -38,16 +43,49 @@ class DatabaseSeeder extends Seeder
             'linkedin_url' => 'https://www.linkedin.com/in/ahmed-ramadan-9565011a2/',
             'whatsapp_url' => 'https://wa.me/+201505611560',
         ]);
-
         $skills = [
+            // Backend
             ['name' => 'PHP', 'category' => 'backend', 'level' => 100],
             ['name' => 'Laravel', 'category' => 'backend', 'level' => 100],
-            ['name' => 'MySQL', 'category' => 'database', 'level' => 100],
             ['name' => 'REST APIs', 'category' => 'backend', 'level' => 100],
+            ['name' => 'Livewire', 'category' => 'backend', 'level' => 95],
+            ['name' => 'Authentication & Authorization', 'category' => 'backend', 'level' => 95],
+            ['name' => 'RBAC', 'category' => 'backend', 'level' => 95],
+
+            // Frontend
             ['name' => 'JavaScript', 'category' => 'frontend', 'level' => 95],
+            ['name' => 'HTML5', 'category' => 'frontend', 'level' => 100],
+            ['name' => 'CSS3', 'category' => 'frontend', 'level' => 100],
             ['name' => 'Tailwind CSS', 'category' => 'frontend', 'level' => 95],
             ['name' => 'Bootstrap', 'category' => 'frontend', 'level' => 100],
+            ['name' => 'Responsive Design', 'category' => 'frontend', 'level' => 95],
+
+            // Database
+            ['name' => 'MySQL', 'category' => 'database', 'level' => 100],
+            ['name' => 'Database Design', 'category' => 'database', 'level' => 100],
+            ['name' => 'Query Optimization', 'category' => 'database', 'level' => 95],
+            ['name' => 'Database Optimization', 'category' => 'database', 'level' => 95],
+
+            // Architecture & Engineering
+            ['name' => 'MVC Architecture', 'category' => 'architecture', 'level' => 100],
+            ['name' => 'Object-Oriented Programming', 'category' => 'architecture', 'level' => 100],
+            ['name' => 'Clean Code', 'category' => 'architecture', 'level' => 95],
+            ['name' => 'Software Architecture', 'category' => 'architecture', 'level' => 95],
+            ['name' => 'Scalable Systems', 'category' => 'architecture', 'level' => 95],
+
+            // Integrations
+            ['name' => 'Third-Party Integrations', 'category' => 'integration', 'level' => 95],
+            ['name' => 'Payment Gateways', 'category' => 'integration', 'level' => 95],
+            ['name' => 'Real-Time Applications', 'category' => 'integration', 'level' => 90],
+            ['name' => 'Pusher', 'category' => 'integration', 'level' => 90],
+            ['name' => 'Webhooks', 'category' => 'integration', 'level' => 95],
+
+            // Tools & DevOps
             ['name' => 'Git', 'category' => 'tools', 'level' => 95],
+            ['name' => 'GitHub', 'category' => 'tools', 'level' => 95],
+            ['name' => 'Composer', 'category' => 'tools', 'level' => 100],
+            ['name' => 'Linux', 'category' => 'tools', 'level' => 85],
+            ['name' => 'Docker', 'category' => 'tools', 'level' => 85],
         ];
         foreach ($skills as $i => $skill) {
             Skill::updateOrCreate(['name' => $skill['name']], $skill + ['order' => $i]);

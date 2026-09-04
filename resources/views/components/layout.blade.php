@@ -42,14 +42,7 @@
                 </div>
 
                 <a href="#introduction" class="flex items-center border-0 min-w-0 xl:max-xxl:ps-5">
-                    @if ($company?->logo_path)
-                        <img class="h-8 w-8 sm:h-14 sm:w-14 shrink-0 rounded-2xl object-cover" src="{{ asset('storage/' . $company->logo_path) }}" alt="{{ $company->name }}">
-                    @else
-                        <span class="flex h-8 w-8 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-picto-primary text-lg sm:text-2xl font-bold text-white">
-                            {{ mb_substr($company->name ?? 'C', 0, 1) }}
-                        </span>
-                    @endif
-                    <p class="truncate text-base xs:text-lg sm:text-2xl md:text-[32px] my-auto ms-[12px] font-semibold">{{ $company->name ?? 'Your Company' }}</p>
+                        <img class="h-[80px]" src="{{ asset('storage/' . $company->navbar_logo_path) }}" alt="{{ $company->name }}">
                 </a>
             </div>
 
@@ -88,14 +81,8 @@
             <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
                 <div class="lg:col-span-2">
                     <a href="#introduction" class="flex items-center border-0 w-fit">
-                        @if ($company?->logo_path)
-                            <img class="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl object-cover" src="{{ asset('storage/' . $company->logo_path) }}" alt="{{ $company->name }}">
-                        @else
-                            <span class="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-picto-primary text-lg sm:text-xl font-bold text-white">
-                                {{ mb_substr($company->name ?? 'C', 0, 1) }}
-                            </span>
-                        @endif
-                        <p class="text-2xl sm:text-[26px] my-auto ms-[12px] font-semibold">{{ $company->name ?? 'Your Company' }}</p>
+                            <img class="h-12" src="{{ asset('storage/' . $company->footer_logo_path) }}" alt="{{ $company->name }}">
+
                     </a>
                     <p class="mt-4 max-w-sm text-sm text-neutral-400">{{ $company->tagline ?? 'We design, build, and scale reliable software for ambitious businesses.' }}</p>
                     <div class="flex gap-1 mt-5 -ms-2.5">

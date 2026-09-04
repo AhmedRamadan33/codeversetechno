@@ -71,7 +71,7 @@
         <div class="border-t border-white/10 pt-6">
             <h2 class="mb-1 text-sm font-semibold text-white">Highlighted stats</h2>
             <p class="mb-4 text-xs text-zinc-500">Shown in the site's stats section. Leave a field blank to fall back to the real count (or hide it, for rating).</p>
-            <div class="grid gap-6 sm:grid-cols-2">
+            <div class="grid gap-6 sm:grid-cols-3">
                 <div>
                     <label class="mb-1 block text-xs font-medium text-zinc-400">Projects delivered</label>
                     <input type="number" name="projects_delivered" min="0" value="{{ old('projects_delivered', $company->projects_delivered) }}"
@@ -85,6 +85,13 @@
                         placeholder="e.g. 4.9 — leave blank to hide"
                         class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-400">
                     @error('client_rating')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
+                </div>
+                <div>
+                    <label class="mb-1 block text-xs font-medium text-zinc-400">Support availability</label>
+                    <input type="text" name="support_hours" value="{{ old('support_hours', $company->support_hours) }}"
+                        placeholder="e.g. 24/7 — leave blank to hide"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-400">
+                    @error('support_hours')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
                 </div>
             </div>
         </div>
@@ -122,25 +129,57 @@
             </div>
         </div>
 
-        <div class="grid gap-6 sm:grid-cols-2">
-            <div>
-                <label class="mb-1 block text-xs font-medium text-zinc-400">Logo</label>
-                @if ($company->logo_path)
-                    <img src="{{ asset('storage/' . $company->logo_path) }}" class="mb-2 h-16 w-16 rounded-full object-cover">
-                @endif
-                <input type="file" name="logo" accept="image/*"
-                    class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none file:mr-3 file:rounded-md file:border-0 file:bg-indigo-500 file:px-3 file:py-1.5 file:text-white">
-                @error('logo')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
+        <div class="border-t border-white/10 pt-6">
+            <h2 class="mb-1 text-sm font-semibold text-white">Images</h2>
+            <p class="mb-4 text-xs text-zinc-500">Each spot on the site has its own image — upload a different one for each, or reuse the same file for all of them.</p>
+            <div class="grid gap-6 sm:grid-cols-2">
+                <div>
+                    <label class="mb-1 block text-xs font-medium text-zinc-400">Navbar logo</label>
+                    @if ($company->navbar_logo_path)
+                        <img src="{{ asset('storage/' . $company->navbar_logo_path) }}" class="mb-2 h-16 w-16 rounded-full object-cover">
+                    @endif
+                    <input type="file" name="navbar_logo" accept="image/*"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none file:mr-3 file:rounded-md file:border-0 file:bg-indigo-500 file:px-3 file:py-1.5 file:text-white">
+                    @error('navbar_logo')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
+                </div>
+                <div>
+                    <label class="mb-1 block text-xs font-medium text-zinc-400">Footer logo</label>
+                    @if ($company->footer_logo_path)
+                        <img src="{{ asset('storage/' . $company->footer_logo_path) }}" class="mb-2 h-16 w-16 rounded-full object-cover">
+                    @endif
+                    <input type="file" name="footer_logo" accept="image/*"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none file:mr-3 file:rounded-md file:border-0 file:bg-indigo-500 file:px-3 file:py-1.5 file:text-white">
+                    @error('footer_logo')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
+                </div>
+                <div>
+                    <label class="mb-1 block text-xs font-medium text-zinc-400">Hero section image</label>
+                    @if ($company->hero_image_path)
+                        <img src="{{ asset('storage/' . $company->hero_image_path) }}" class="mb-2 h-16 w-16 rounded-lg object-cover">
+                    @endif
+                    <input type="file" name="hero_image" accept="image/*"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none file:mr-3 file:rounded-md file:border-0 file:bg-indigo-500 file:px-3 file:py-1.5 file:text-white">
+                    @error('hero_image')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
+                </div>
+                <div>
+                    <label class="mb-1 block text-xs font-medium text-zinc-400">About section image</label>
+                    @if ($company->about_image_path)
+                        <img src="{{ asset('storage/' . $company->about_image_path) }}" class="mb-2 h-16 w-16 rounded-lg object-cover">
+                    @endif
+                    <input type="file" name="about_image" accept="image/*"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none file:mr-3 file:rounded-md file:border-0 file:bg-indigo-500 file:px-3 file:py-1.5 file:text-white">
+                    @error('about_image')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
+                </div>
             </div>
-            <div>
-                <label class="mb-1 block text-xs font-medium text-zinc-400">Company brochure (PDF)</label>
-                @if ($company->brochure_path)
-                    <a href="{{ asset('storage/' . $company->brochure_path) }}" target="_blank" class="mb-2 block text-sm text-indigo-400 hover:text-indigo-300">Current brochure</a>
-                @endif
-                <input type="file" name="brochure" accept="application/pdf"
-                    class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none file:mr-3 file:rounded-md file:border-0 file:bg-indigo-500 file:px-3 file:py-1.5 file:text-white">
-                @error('brochure')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
-            </div>
+        </div>
+
+        <div>
+            <label class="mb-1 block text-xs font-medium text-zinc-400">Company brochure (PDF)</label>
+            @if ($company->brochure_path)
+                <a href="{{ asset('storage/' . $company->brochure_path) }}" target="_blank" class="mb-2 block text-sm text-indigo-400 hover:text-indigo-300">Current brochure</a>
+            @endif
+            <input type="file" name="brochure" accept="application/pdf"
+                class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none file:mr-3 file:rounded-md file:border-0 file:bg-indigo-500 file:px-3 file:py-1.5 file:text-white">
+            @error('brochure')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
         </div>
 
         <div class="border-t border-white/10 pt-6">

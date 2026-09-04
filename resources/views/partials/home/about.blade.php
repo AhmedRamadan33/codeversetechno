@@ -2,8 +2,8 @@
     <div class="flex max-md:flex-col justify-between items-center gap-6">
         <div class="xxl:max-w-106 w-auto h-auto xxl:max-h-126">
             <div class="max-w-106 h-117 w-full overflow-hidden rounded-xl bg-soft-white center">
-                @if ($company?->logo_path)
-                    <img class="h-full w-full object-cover" src="{{ asset('storage/' . $company->logo_path) }}" alt="{{ $company->name }}">
+                @if ($company?->about_image_path)
+                    <img class="h-full w-full object-cover" src="{{ asset('storage/' . $company->about_image_path) }}" alt="{{ $company->name }}">
                 @else
                     <span class="text-6xl font-bold text-picto-primary/20">
                         {{ collect(explode(' ', $company->name ?? 'Y C'))->map(fn ($p) => mb_substr($p, 0, 1))->take(2)->implode('') }}

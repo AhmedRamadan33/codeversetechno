@@ -1,4 +1,4 @@
-<div class="flex max-lg:flex-col-reverse sm:justify-between pt-10 lg:mb-27.5 max-xl:gap-2 p-2 max-xxl:px-4 xxl:max-w-[1320px] xxl:mx-auto introduction-profile-background" id="introduction">
+<div class="flex max-lg:flex-col-reverse sm:justify-between lg:items-center pt-10 lg:mb-27.5 max-xl:gap-2 p-2 max-xxl:px-4 xxl:max-w-[1320px] xxl:mx-auto introduction-profile-background" id="introduction">
     <div class="w-full flex flex-col justify-start max-lg:text-center">
         <div class="pt-12 lg:pt-24 me-31.5 w-full lg:w-auto transition-all duration-500">
             <p class="text-picto-primary font-semibold text-sm xxs:text-base mb-3 tracking-wide uppercase">
@@ -7,8 +7,16 @@
             <p class="text-3xl xxs:text-4xl sm:max-xl:text-5xl xl:text-6xl font-semibold w-full leading-tight">
                 We Engineer Software That Powers Your Business
             </p>
+            @php
+                $tagline = $company->tagline ?? 'We design, build, and scale reliable backend systems and web platforms for ambitious businesses.';
+                $taglineHtml = preg_replace(
+                    '/reliable software/i',
+                    '<span class="bg-highlight">$0</span>',
+                    e($tagline)
+                );
+            @endphp
             <p class="text-xs xxs:text-lg lg:text-[18px] my-6 text-gray-600">
-                {{ $company->tagline ?? 'We design, build, and scale reliable backend systems and web platforms for ambitious businesses.' }}
+                {!! $taglineHtml !!}
                 @if ($company?->location)
                     Based in <span class="bg-highlight">{{ $company->location }}</span>, working with clients everywhere.
                 @endif
@@ -39,6 +47,7 @@
                 ($stats['years'] ?? 0) > 0 ? ['value' => $stats['years'].'+', 'label' => 'Years Building Software'] : null,
                 ($stats['projects'] ?? 0) > 0 ? ['value' => $stats['projects'].'+', 'label' => 'Projects Delivered'] : null,
                 ($stats['rating'] ?? 0) > 0 ? ['value' => number_format($stats['rating'], 1).'/5', 'label' => 'Client Rating'] : null,
+                !empty($stats['support']) ? ['value' => $stats['support'], 'label' => 'Technical Support'] : null,
             ]);
         @endphp
         @if (!empty($heroStatCards))
@@ -52,10 +61,10 @@
             </div>
         @endif
     </div>
-    <div class="max-w-134 w-full h-full max-lg:mx-auto aspect-[536/636] relative">
-        <div class="shadow-2xl shadow-gray-200 w-full h-full absolute bottom-0 bg-gradient-to-br from-picto-primary/15 to-[#c4f5e9] rounded-3xl center overflow-hidden">
-            @if ($company?->logo_path)
-                <img class="w-full h-full object-cover" src="{{ asset('storage/' . $company->logo_path) }}" alt="{{ $company->name }}">
+    <div class="max-w-[600px] w-full max-lg:mx-auto">
+        <div class="shadow-2xl shadow-gray-200 w-full aspect-[3/2] bg-gradient-to-br from-picto-primary/15 to-[#c4f5e9] rounded-3xl center overflow-hidden">
+            @if ($company?->hero_image_path)
+                <img class="w-full h-full object-cover" src="{{ asset('storage/' . $company->hero_image_path) }}" alt="{{ $company->name }}">
             @else
                 <span class="text-8xl font-bold text-picto-primary/30">
                     {{ collect(explode(' ', $company->name ?? 'Y C'))->map(fn ($p) => mb_substr($p, 0, 1))->take(2)->implode('') }}

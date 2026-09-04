@@ -13,6 +13,16 @@ use Illuminate\View\View;
 
 class CompanyController extends Controller
 {
+    /**
+     * Maps each upload input name to the Company column it fills.
+     */
+    private const IMAGE_FIELDS = [
+        'navbar_logo' => 'navbar_logo_path',
+        'footer_logo' => 'footer_logo_path',
+        'hero_image' => 'hero_image_path',
+        'about_image' => 'about_image_path',
+    ];
+
     public function edit(): View
     {
         $company = Company::firstOrNew();
@@ -32,6 +42,7 @@ class CompanyController extends Controller
             'founded_year' => ['nullable', 'integer', 'min:1900', 'max:'.(date('Y') + 1)],
             'projects_delivered' => ['nullable', 'integer', 'min:0'],
             'client_rating' => ['nullable', 'numeric', 'min:0', 'max:5'],
+            'support_hours' => ['nullable', 'string', 'max:50'],
             'email' => ['nullable', 'email', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
             'location' => ['nullable', 'string', 'max:255'],
@@ -41,17 +52,22 @@ class CompanyController extends Controller
             'twitter_url' => ['nullable', 'url', 'max:255'],
             'whatsapp_url' => ['nullable', 'url', 'max:255'],
             'github_url' => ['nullable', 'url', 'max:255'],
-            'logo' => ['nullable', 'image', 'max:4096'],
+            'navbar_logo' => ['nullable', 'image', 'max:4096'],
+            'footer_logo' => ['nullable', 'image', 'max:4096'],
+            'hero_image' => ['nullable', 'image', 'max:4096'],
+            'about_image' => ['nullable', 'image', 'max:4096'],
             'brochure' => ['nullable', 'mimes:pdf', 'max:8192'],
         ]);
 
         $company = Company::firstOrNew();
 
-        if ($request->hasFile('logo')) {
-            if ($company->logo_path) {
-                Storage::disk('public')->delete($company->logo_path);
+        foreach (self::IMAGE_FIELDS as $input => $column) {
+            if ($request->hasFile($input)) {
+                if ($company->{$column}) {
+                    Storage::disk('public')->delete($company->{$column});
+                }
+                $data[$column] = $request->file($input)->store('company', 'public');
             }
-            $data['logo_path'] = $request->file('logo')->store('company', 'public');
         }
 
         if ($request->hasFile('brochure')) {
