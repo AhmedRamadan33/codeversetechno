@@ -3,10 +3,8 @@
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MessageController;
-use App\Http\Controllers\Admin\MilestoneController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SkillController;
-use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
@@ -30,8 +28,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::resource('skills', SkillController::class)->except('show');
     Route::resource('projects', ProjectController::class)->except('show');
-    Route::resource('team', TeamMemberController::class)->parameters(['team' => 'member'])->except('show');
-    Route::resource('milestones', MilestoneController::class)->except('show');
     Route::resource('testimonials', TestimonialController::class)->except('show');
 
     Route::get('messages', [MessageController::class, 'index'])->name('messages.index');

@@ -1,11 +1,3 @@
-@php
-    $whyChooseUs = [
-        'Clean, well-tested code following MVC and modern architecture principles',
-        'Secure by design — authentication, authorization, and role-based access control on every project',
-        'Scalable systems built to grow with your business, from MVP to enterprise scale',
-        'Direct communication with the engineers building your product, start to finish',
-    ];
-@endphp
 <div class="reveal relative mx-4 xxl:mx-auto xxl:max-w-[1320px] -bottom-20 lg:-bottom-28 z-10 rounded-2xl bg-white drop-shadow-2xl max-xl:mb-5 shadow-white xl:p-28 lg:p-20 md:p-16 sm:p-10 p-4" id="about">
     <div class="flex max-md:flex-col justify-between items-center gap-6">
         <div class="xxl:max-w-106 w-auto h-auto xxl:max-h-126">
@@ -41,19 +33,6 @@
                 @else
                     <p>Company description coming soon — edit this from the admin panel.</p>
                 @endif
-            </div>
-
-            <div class="mt-8 space-y-3">
-                @foreach ($whyChooseUs as $point)
-                    <div class="flex items-start gap-3">
-                        <span class="mt-0.5 shrink-0 flex h-5 w-5 items-center justify-center rounded-full bg-picto-primary/15 text-picto-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20 6 9 17l-5-5"/>
-                            </svg>
-                        </span>
-                        <p class="text-[13px] xs:text-[15px] text-gray-600">{{ $point }}</p>
-                    </div>
-                @endforeach
             </div>
 
             @if ($company?->mission || $company?->vision)

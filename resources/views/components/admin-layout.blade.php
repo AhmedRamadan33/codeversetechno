@@ -17,8 +17,6 @@
             ['route' => 'admin.company.edit', 'label' => 'Company'],
             ['route' => 'admin.skills.index', 'label' => 'Technologies'],
             ['route' => 'admin.projects.index', 'label' => 'Projects'],
-            ['route' => 'admin.team.index', 'label' => 'Team'],
-            ['route' => 'admin.milestones.index', 'label' => 'Milestones'],
             ['route' => 'admin.testimonials.index', 'label' => 'Testimonials'],
             ['route' => 'admin.messages.index', 'label' => 'Messages'],
         ];

@@ -68,6 +68,27 @@
             </div>
         </div>
 
+        <div class="border-t border-white/10 pt-6">
+            <h2 class="mb-1 text-sm font-semibold text-white">Highlighted stats</h2>
+            <p class="mb-4 text-xs text-zinc-500">Shown in the site's stats section. Leave a field blank to fall back to the real count (or hide it, for rating).</p>
+            <div class="grid gap-6 sm:grid-cols-2">
+                <div>
+                    <label class="mb-1 block text-xs font-medium text-zinc-400">Projects delivered</label>
+                    <input type="number" name="projects_delivered" min="0" value="{{ old('projects_delivered', $company->projects_delivered) }}"
+                        placeholder="Defaults to the number of projects added below"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-400">
+                    @error('projects_delivered')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
+                </div>
+                <div>
+                    <label class="mb-1 block text-xs font-medium text-zinc-400">Client rating (out of 5)</label>
+                    <input type="number" step="0.1" min="0" max="5" name="client_rating" value="{{ old('client_rating', $company->client_rating) }}"
+                        placeholder="e.g. 4.9 — leave blank to hide"
+                        class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none focus:border-indigo-400">
+                    @error('client_rating')<p class="mt-1 text-xs text-rose-400">{{ $message }}</p>@enderror
+                </div>
+            </div>
+        </div>
+
         <div class="grid gap-6 sm:grid-cols-3">
             <div>
                 <label class="mb-1 block text-xs font-medium text-zinc-400">Facebook URL</label>

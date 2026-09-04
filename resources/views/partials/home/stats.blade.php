@@ -2,17 +2,16 @@
     $statCards = array_filter([
         ($stats['years'] ?? 0) > 0 ? ['value' => $stats['years'].'+', 'label' => 'Years Building Software'] : null,
         ($stats['projects'] ?? 0) > 0 ? ['value' => $stats['projects'].'+', 'label' => 'Projects Delivered'] : null,
-        ($stats['technologies'] ?? 0) > 0 ? ['value' => $stats['technologies'].'+', 'label' => 'Technologies Mastered'] : null,
-        ($stats['industries'] ?? 0) > 0 ? ['value' => $stats['industries'], 'label' => 'Industries Served'] : null,
+        ($stats['rating'] ?? 0) > 0 ? ['value' => number_format($stats['rating'], 1).'/5', 'label' => 'Client Rating'] : null,
     ]);
 @endphp
 
 @if (!empty($statCards))
 <div class="reveal bg-[#132238]">
     <div class="content py-16 md:py-20 px-2 max-xxl:px-4">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div class="flex flex-wrap justify-center gap-x-12 gap-y-10 text-center">
             @foreach ($statCards as $card)
-                <div>
+                <div class="min-w-32">
                     <p class="text-4xl md:text-5xl font-bold text-white">{{ $card['value'] }}</p>
                     <p class="mt-2 text-xs md:text-sm text-[#A5ACB5]">{{ $card['label'] }}</p>
                 </div>

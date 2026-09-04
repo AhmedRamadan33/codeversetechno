@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ContactMessage;
-use App\Models\Milestone;
 use App\Models\Project;
 use App\Models\Skill;
-use App\Models\TeamMember;
+use App\Models\Testimonial;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -17,8 +16,7 @@ class DashboardController extends Controller
         $stats = [
             'projects' => Project::count(),
             'technologies' => Skill::count(),
-            'team_members' => TeamMember::count(),
-            'milestones' => Milestone::count(),
+            'testimonials' => Testimonial::count(),
             'unread_messages' => ContactMessage::where('is_read', false)->count(),
         ];
 

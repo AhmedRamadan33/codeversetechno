@@ -30,6 +30,8 @@ class CompanyController extends Controller
             'mission' => ['nullable', 'string', 'max:2000'],
             'vision' => ['nullable', 'string', 'max:2000'],
             'founded_year' => ['nullable', 'integer', 'min:1900', 'max:'.(date('Y') + 1)],
+            'projects_delivered' => ['nullable', 'integer', 'min:0'],
+            'client_rating' => ['nullable', 'numeric', 'min:0', 'max:5'],
             'email' => ['nullable', 'email', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
             'location' => ['nullable', 'string', 'max:255'],

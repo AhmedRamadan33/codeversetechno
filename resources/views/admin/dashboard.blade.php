@@ -1,10 +1,9 @@
 <x-admin-layout title="Dashboard">
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         @foreach ([
             ['label' => 'Projects', 'value' => $stats['projects']],
             ['label' => 'Technologies', 'value' => $stats['technologies']],
-            ['label' => 'Team members', 'value' => $stats['team_members']],
-            ['label' => 'Milestones', 'value' => $stats['milestones']],
+            ['label' => 'Testimonials', 'value' => $stats['testimonials']],
             ['label' => 'Unread messages', 'value' => $stats['unread_messages']],
         ] as $card)
             <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">

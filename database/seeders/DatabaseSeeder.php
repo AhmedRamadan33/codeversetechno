@@ -3,10 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
-use App\Models\Milestone;
 use App\Models\Project;
 use App\Models\Skill;
-use App\Models\TeamMember;
+use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
@@ -24,7 +23,6 @@ class DatabaseSeeder extends Seeder
 
         $this->command->warn("Admin login -> email: ahmed.ramadan.abdelaaty5@gmail.com | password: {$password}");
 
-        // NOTE: placeholder company info — edit from the admin panel (/admin/company).
         Company::updateOrCreate(['id' => 1], [
             'name' => 'CodeVerse',
             'industry' => 'Software Development & Digital Solutions',
@@ -32,8 +30,8 @@ class DatabaseSeeder extends Seeder
             'about' => "CodeVerse is a software development company specializing in Laravel, PHP, and MySQL, with a proven track record of building scalable, secure, and high-performance web applications. We design and develop RESTful APIs, integrate third-party services, optimize database performance, and implement secure authentication, authorization, and Role-Based Access Control (RBAC) for our clients. Our team follows MVC architecture, Object-Oriented Programming (OOP), and modern software design principles, with hands-on experience in real-time applications using Pusher and Livewire. We are passionate about writing clean, maintainable code, solving complex technical challenges, and delivering reliable, production-ready backend solutions.",
             'mission' => 'To help businesses grow by building reliable, scalable, and secure software tailored to their needs.',
             'vision' => 'To be a trusted technology partner known for engineering excellence and long-term client relationships.',
-            'founded_year' => 2023,
-            'email' => 'ahmed.ramadan.abdelaaty5@gmail.com',
+            'founded_year' => 2020,
+            'email' => 'info@codeversetechno.com',
             'phone' => '+20 150 561 1560',
             'location' => 'Zagazig, Egypt',
             'github_url' => 'https://github.com/AhmedRamadan33?tab=repositories',
@@ -101,37 +99,56 @@ class DatabaseSeeder extends Seeder
             Project::updateOrCreate(['title' => $project['title']], $project);
         }
 
-        // NOTE: placeholder team — add the rest of the team from the admin panel (/admin/team).
-        TeamMember::updateOrCreate(['name' => 'Ahmed Ramadan'], [
-            'position' => 'Founder & Lead Backend Developer',
-            'bio' => 'Full-stack developer with 4+ years of experience specializing in Laravel, PHP, and MySQL, leading the design and delivery of ERP, LMS, and business management platforms.',
-            'email' => 'ahmed.ramadan.abdelaaty5@gmail.com',
-            'linkedin_url' => 'https://www.linkedin.com/in/ahmed-ramadan-9565011a2/',
-            'order' => 0,
-        ]);
-
-        $milestones = [
+        $testimonials = [
             [
-                'title' => 'CodeVerse founded',
-                'description' => 'Started building custom Laravel-based systems for clients across different industries.',
-                'year' => 2023,
-                'order' => 0,
+                'client_name' => 'Ahmed Mostafa',
+                'rating' => 5,
+                'quote' => 'CodeVerse helped us turn our idea into a complete web platform. The team understood our requirements quickly and delivered a clean, reliable solution.',
             ],
             [
-                'title' => 'First enterprise ERP delivered',
-                'description' => 'Shipped a full-scale ERP system covering finance, inventory, sales, and HR.',
-                'year' => 2024,
-                'order' => 1,
+                'client_name' => 'Omar Hassan',
+                'rating' => 5,
+                'quote' => 'We needed a custom management system for our business, and CodeVerse built exactly what we needed. Communication was clear and the support after delivery was excellent.',
             ],
             [
-                'title' => 'Expanded into new industries',
-                'description' => 'Delivered platforms for education, healthcare, and legal sectors.',
-                'year' => 2025,
-                'order' => 2,
+                'client_name' => 'Mahmoud Adel',
+                'rating' => 5,
+                'quote' => 'Very professional team. They were flexible when our requirements changed and always focused on finding practical solutions instead of overcomplicating the project.',
+            ],
+            [
+                'client_name' => 'Youssef Samir',
+                'rating' => 4,
+                'quote' => 'CodeVerse developed our appointment and management platform and made a big difference in how we handle our daily operations. The system is simple and easy for our team to use.',
+            ],
+            [
+                'client_name' => 'Mariam Khaled',
+                'rating' => 5,
+                'quote' => 'The team did a great job building our learning platform. They were responsive throughout the project and paid close attention to the details we requested.',
+            ],
+            [
+                'client_name' => 'Karim Nabil',
+                'rating' => 5,
+                'quote' => 'We worked with CodeVerse on our e-commerce platform. The development process was organized, and the final result gave us a much better experience for both customers and staff.',
+            ],
+            [
+                'client_name' => 'Hassan Ibrahim',
+                'rating' => 4,
+                'quote' => 'A reliable development team with strong technical skills. They helped us automate several manual processes and built the system around the way our business actually works.',
+            ],
+            [
+                'client_name' => 'Sara Mohamed',
+                'rating' => 5,
+                'quote' => 'From the first discussion to the final delivery, the team was easy to work with. They took our requirements seriously and delivered a modern solution that fits our business.',
             ],
         ];
-        foreach ($milestones as $milestone) {
-            Milestone::updateOrCreate(['title' => $milestone['title']], $milestone);
+
+        foreach ($testimonials as $i => $testimonial) {
+            Testimonial::updateOrCreate(
+                [
+                    'client_name' => $testimonial['client_name'],
+                ],
+                $testimonial + ['order' => $i]
+            );
         }
     }
 }

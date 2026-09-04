@@ -34,26 +34,21 @@
             @endif
         </div>
 
-        @if (($stats['projects'] ?? 0) > 0 || ($stats['years'] ?? 0) > 0)
+        @php
+            $heroStatCards = array_filter([
+                ($stats['years'] ?? 0) > 0 ? ['value' => $stats['years'].'+', 'label' => 'Years Building Software'] : null,
+                ($stats['projects'] ?? 0) > 0 ? ['value' => $stats['projects'].'+', 'label' => 'Projects Delivered'] : null,
+                ($stats['rating'] ?? 0) > 0 ? ['value' => number_format($stats['rating'], 1).'/5', 'label' => 'Client Rating'] : null,
+            ]);
+        @endphp
+        @if (!empty($heroStatCards))
             <div class="mt-10 lg:mt-16 flex max-lg:justify-center gap-8 xs:gap-12 flex-wrap">
-                @if (($stats['years'] ?? 0) > 0)
+                @foreach ($heroStatCards as $card)
                     <div>
-                        <p class="text-2xl xxs:text-3xl font-bold text-[#132238]">{{ $stats['years'] }}+</p>
-                        <p class="text-xs xxs:text-sm text-gray-500">Years Building Software</p>
+                        <p class="text-2xl xxs:text-3xl font-bold text-[#132238]">{{ $card['value'] }}</p>
+                        <p class="text-xs xxs:text-sm text-gray-500">{{ $card['label'] }}</p>
                     </div>
-                @endif
-                @if (($stats['projects'] ?? 0) > 0)
-                    <div>
-                        <p class="text-2xl xxs:text-3xl font-bold text-[#132238]">{{ $stats['projects'] }}+</p>
-                        <p class="text-xs xxs:text-sm text-gray-500">Projects Delivered</p>
-                    </div>
-                @endif
-                @if (($stats['industries'] ?? 0) > 0)
-                    <div>
-                        <p class="text-2xl xxs:text-3xl font-bold text-[#132238]">{{ $stats['industries'] }}</p>
-                        <p class="text-xs xxs:text-sm text-gray-500">Industries Served</p>
-                    </div>
-                @endif
+                @endforeach
             </div>
         @endif
     </div>

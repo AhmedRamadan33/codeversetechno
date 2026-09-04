@@ -18,9 +18,9 @@
         $navItems = [
             ['id' => 1, 'name' => 'Home', 'url' => 'introduction'],
             ['id' => 2, 'name' => 'About', 'url' => 'about'],
-            ['id' => 3, 'name' => 'Services', 'url' => 'services'],
-            ['id' => 4, 'name' => 'Work', 'url' => 'portfolio'],
-            ['id' => 5, 'name' => 'Team', 'url' => 'team'],
+            ['id' => 3, 'name' => 'Why Us', 'url' => 'why-us'],
+            ['id' => 4, 'name' => 'Services', 'url' => 'services'],
+            ['id' => 5, 'name' => 'Work', 'url' => 'portfolio'],
             ['id' => 6, 'name' => 'Contact', 'url' => 'contact'],
         ];
     @endphp
@@ -74,8 +74,8 @@
         @php
             $footerCompanyLinks = [
                 ['name' => 'About Us', 'url' => 'about'],
-                ['name' => 'Our Team', 'url' => 'team'],
-                ['name' => 'Our Journey', 'url' => 'milestones'],
+                ['name' => 'Why Us', 'url' => 'why-us'],
+                ['name' => 'How We Work', 'url' => 'work-process'],
                 ['name' => 'Contact', 'url' => 'contact'],
             ];
             $footerWorkLinks = [

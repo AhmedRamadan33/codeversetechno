@@ -14,6 +14,8 @@ class Company extends Model
         'mission',
         'vision',
         'founded_year',
+        'projects_delivered',
+        'client_rating',
         'logo_path',
         'brochure_path',
         'email',
@@ -31,6 +33,8 @@ class Company extends Model
     {
         return [
             'founded_year' => 'integer',
+            'projects_delivered' => 'integer',
+            'client_rating' => 'float',
         ];
     }
 }
