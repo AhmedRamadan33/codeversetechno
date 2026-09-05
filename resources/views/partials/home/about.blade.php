@@ -1,7 +1,7 @@
 <div class="reveal relative mx-4 xxl:mx-auto xxl:max-w-[1320px] z-10 rounded-2xl bg-white drop-shadow-2xl max-xl:mb-5 shadow-white xl:p-28 lg:p-20 md:p-16 sm:p-10 p-4" id="about">
     <div class="flex max-md:flex-col justify-between items-center gap-6">
         <div class="xxl:max-w-106 w-auto h-auto xxl:max-h-126">
-            <div class="max-w-106 h-117 w-full overflow-hidden rounded-xl bg-soft-white center">
+            <div class="max-w-106 aspect-[5/4] md:aspect-auto md:h-117 w-full overflow-hidden rounded-xl bg-soft-white center">
                 @if ($company?->about_image_path)
                     <img class="h-full w-full object-cover" src="{{ asset('storage/' . $company->about_image_path) }}" alt="{{ $company->name }}">
                 @else
