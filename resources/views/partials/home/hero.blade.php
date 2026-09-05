@@ -1,10 +1,10 @@
-<div class="flex max-lg:flex-col-reverse sm:justify-between lg:items-center pt-10 lg:mb-27.5 max-xl:gap-2 p-2 max-xxl:px-4 xxl:max-w-[1320px] xxl:mx-auto introduction-profile-background" id="introduction">
+<div class="flex max-lg:flex-col-reverse sm:justify-between lg:items-start pt-6 max-xl:gap-2 p-2 max-xxl:px-4 xxl:max-w-[1320px] xxl:mx-auto introduction-profile-background" id="introduction">
     <div class="w-full flex flex-col justify-start max-lg:text-center">
-        <div class="pt-12 lg:pt-24 me-31.5 w-full lg:w-auto transition-all duration-500">
+        <div class="pt-8 lg:pt-16 lg:me-6 xl:me-16 xxl:me-31.5 w-full lg:w-auto transition-all duration-500">
             <p class="text-picto-primary font-semibold text-sm xxs:text-base mb-3 tracking-wide uppercase">
                 {{ $company->name ?? 'Your Company' }} &middot; {{ $company->industry ?? 'Software Development' }}
             </p>
-            <p class="text-3xl xxs:text-4xl sm:max-xl:text-5xl xl:text-6xl font-semibold w-full leading-tight">
+            <p class="text-3xl xxs:text-4xl font-semibold w-full leading-tight">
                 We Engineer Software That Powers Your Business
             </p>
             @php
@@ -51,17 +51,17 @@
             ]);
         @endphp
         @if (!empty($heroStatCards))
-            <div class="mt-10 lg:mt-16 flex max-lg:justify-center gap-8 xs:gap-12 flex-wrap">
+            <div class="mt-8 lg:mt-16 flex max-lg:justify-center gap-8 xs:gap-12 lg:gap-4 xl:gap-10 xxl:gap-12 flex-wrap">
                 @foreach ($heroStatCards as $card)
                     <div>
-                        <p class="text-2xl xxs:text-3xl font-bold text-[#132238]">{{ $card['value'] }}</p>
-                        <p class="text-xs xxs:text-sm text-gray-500">{{ $card['label'] }}</p>
+                        <p class="text-2xl xxs:text-3xl lg:text-xl xl:text-3xl font-bold text-[#132238]">{{ $card['value'] }}</p>
+                        <p class="text-xs xxs:text-sm text-gray-500 lg:text-nowrap">{{ $card['label'] }}</p>
                     </div>
                 @endforeach
             </div>
         @endif
     </div>
-    <div class="max-w-[600px] w-full max-lg:mx-auto">
+    <div class="max-w-[600px] lg:max-w-[420px] xl:max-w-[600px] w-full max-lg:mx-auto">
         <div class="shadow-2xl shadow-gray-200 w-full aspect-[3/2] bg-gradient-to-br from-picto-primary/15 to-[#c4f5e9] rounded-3xl center overflow-hidden">
             @if ($company?->hero_image_path)
                 <img class="w-full h-full object-cover" src="{{ asset('storage/' . $company->hero_image_path) }}" alt="{{ $company->name }}">

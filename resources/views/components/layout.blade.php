@@ -12,7 +12,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="relative bg-white text-gray-900 antialiased">
+<body class="relative bg-white text-gray-900 antialiased overflow-x-hidden">
 
     @php
         $navItems = [
@@ -42,7 +42,7 @@
                 </div>
 
                 <a href="#introduction" class="flex items-center border-0 min-w-0 xl:max-xxl:ps-5">
-                        <img class="h-[80px]" src="{{ asset('storage/' . $company->navbar_logo_path) }}" alt="{{ $company->name }}">
+                        <img class="h-10 xs:h-12 sm:h-16 lg:h-[80px]" src="{{ asset('storage/' . $company->navbar_logo_path) }}" alt="{{ $company->name }}">
                 </a>
             </div>
 
