@@ -1,16 +1,77 @@
 @props(['company' => null])
+@php
+    $siteName = $company->name ?? config('app.name');
+    $siteTagline = $company->industry ?? 'Software Development Company';
+    $siteDescription = $company->tagline
+        ?? 'We design, build, and scale reliable software for ambitious businesses.';
+    $canonicalUrl = url()->current();
+    $ogImagePath = $company?->hero_image_path
+        ? asset('storage/' . $company->hero_image_path)
+        : asset('img/codeverse-logo.png');
+@endphp
 <!DOCTYPE html>
 <html lang="en" data-theme="light" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $company->name ?? config('app.name') }} — {{ $company->industry ?? 'Software Development Company' }}</title>
-    <meta name="description" content="{{ $company->tagline ?? '' }}">
+    <meta name="robots" content="index, follow">
+    <title>{{ $siteName }} — {{ $siteTagline }}</title>
+    <meta name="description" content="{{ $siteDescription }}">
+    <link rel="canonical" href="{{ $canonicalUrl }}">
+
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+
+    @if (config('services.google_site_verification'))
+        <meta name="google-site-verification" content="{{ config('services.google_site_verification') }}">
+    @endif
+    @if (config('services.bing_site_verification'))
+        <meta name="msvalidate.01" content="{{ config('services.bing_site_verification') }}">
+    @endif
+
+    {{-- Open Graph / Facebook / LinkedIn --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
+    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:title" content="{{ $siteName }} — {{ $siteTagline }}">
+    <meta property="og:description" content="{{ $siteDescription }}">
+    <meta property="og:image" content="{{ $ogImagePath }}">
+    <meta property="og:locale" content="en_US">
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $siteName }} — {{ $siteTagline }}">
+    <meta name="twitter:description" content="{{ $siteDescription }}">
+    <meta name="twitter:image" content="{{ $ogImagePath }}">
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=work-sans:400,500,600,700" rel="stylesheet" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- Organization structured data (helps Google understand and display this business) --}}
+    <script type="application/ld+json">
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'name' => $siteName,
+            'url' => url('/'),
+            'logo' => asset('img/codeverse-logo.png'),
+            'description' => $company?->about ?? $siteDescription,
+            'email' => $company?->email,
+            'telephone' => $company?->phone,
+            'address' => $company?->location ? [
+                '@type' => 'PostalAddress',
+                'addressLocality' => $company->location,
+            ] : null,
+            'sameAs' => array_values(array_filter([
+                $company?->linkedin_url,
+                $company?->github_url,
+                $company?->facebook_url,
+                $company?->instagram_url,
+                $company?->twitter_url,
+            ])),
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
 </head>
 <body class="relative bg-white text-gray-900 antialiased overflow-x-hidden">
 
