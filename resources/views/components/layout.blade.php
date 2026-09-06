@@ -14,6 +14,23 @@
 </head>
 <body class="relative bg-white text-gray-900 antialiased overflow-x-hidden">
 
+    <div id="page-loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-6 bg-white" role="status" aria-live="polite">
+        <img src="{{ asset('img/codeverse-logo.png') }}" alt="{{ $company->name ?? 'CodeVerse' }}" class="loader-logo w-56 xxs:w-64 sm:w-72">
+        <div class="loader-bar">
+            <div class="loader-bar-fill"></div>
+        </div>
+        <span class="sr-only">Loading…</span>
+    </div>
+    <script>
+        // Fallback: force-hide the loader even if the main bundle fails to load.
+        setTimeout(function () {
+            var loader = document.getElementById('page-loader');
+            if (loader) {
+                loader.classList.add('loader-hidden');
+            }
+        }, 5000);
+    </script>
+
     @php
         $navItems = [
             ['id' => 1, 'name' => 'Home', 'url' => 'introduction'],

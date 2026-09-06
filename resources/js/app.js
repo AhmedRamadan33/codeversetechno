@@ -1,5 +1,17 @@
 import './bootstrap';
 
+window.addEventListener('load', () => {
+    const loader = document.getElementById('page-loader');
+
+    if (loader) {
+        // Small minimum display time so the loader doesn't just flash on fast connections.
+        setTimeout(() => {
+            loader.classList.add('loader-hidden');
+            loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+        }, 350);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.getElementById('navbar');
 
